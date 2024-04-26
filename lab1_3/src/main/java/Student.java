@@ -30,7 +30,7 @@ public class Student implements Comparable<Student> {
         System.out.print("Students of " + course + " course:\n");
         for (Student student : students) {
             if (student.getCourse() == course) {
-                System.out.println(student.getName());
+                System.out.print(student.getName()+"\n");
             }
         }
     }

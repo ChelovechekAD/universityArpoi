@@ -28,22 +28,30 @@ public class FractionTest {
 
     @Test
     public void testAddFractionsPositive() {
-        assertEquals(new Fraction(11, 4), fraction1.add(fraction2));
+        Fraction exceptedFraction = new Fraction(11, 4);
+        Fraction realFraction = fraction1.add(fraction2);
+        assertEquals(exceptedFraction, realFraction);
     }
 
     @Test
     public void testSubtractFractionsPositive() {
-        assertEquals(new Fraction(5, 4), fraction1.subtract(fraction2));
+        Fraction exceptedFraction = new Fraction(5, 4);
+        Fraction realFraction = fraction1.subtract(fraction2);
+        assertEquals(exceptedFraction, realFraction);
     }
 
     @Test
     public void testMultiplyFractionsPositive() {
-        assertEquals(new Fraction(3, 2), fraction1.multiply(fraction2));
+        Fraction exceptedFraction = new Fraction(3, 2);
+        Fraction realFraction = fraction1.multiply(fraction2);
+        assertEquals(exceptedFraction, realFraction);
     }
 
     @Test
     public void testDivideFractionsPositive() throws DivByZeroException {
-        assertEquals(new Fraction(8, 3), fraction1.divide(fraction2));
+        Fraction exceptedFraction = new Fraction(8, 3);
+        Fraction realFraction = fraction1.divide(fraction2);
+        assertEquals(exceptedFraction, realFraction);
     }
 
     @ParameterizedTest
@@ -54,7 +62,9 @@ public class FractionTest {
 
     @Test
     public void testReduceFractionPositive() {
-        assertEquals(new Fraction(2, 1), fraction1.reduce());
+        Fraction exceptedFraction = new Fraction(2, 1);
+        Fraction realFraction = fraction1.reduce();
+        assertEquals(exceptedFraction, realFraction);
     }
 
     @Test

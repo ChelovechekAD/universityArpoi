@@ -2,6 +2,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class NumberStorageTest {
@@ -20,7 +22,8 @@ public class NumberStorageTest {
     @Test
     public void testAddNumberPositive() {
         numberStorage.add(5);
-        assertEquals(5, (int) numberStorage.findClosest(5));
+        NumberStorage exceptedStorage = new NumberStorage(List.of(5));
+        assertEquals(exceptedStorage.getNumbers(), numberStorage.getNumbers());
     }
 
     @Test
@@ -28,7 +31,8 @@ public class NumberStorageTest {
         numberStorage.add(5);
         numberStorage.add(10);
         numberStorage.remove(5);
-        assertFalse(numberStorage.findClosest(5) == 5);
+        NumberStorage exceptedStorage = new NumberStorage(List.of(10));
+        assertEquals(exceptedStorage.getNumbers(), numberStorage.getNumbers());
     }
 
     @Test
@@ -53,14 +57,12 @@ public class NumberStorageTest {
         numberStorage.add(5);
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> numberStorage.remove(10));
-
         assertEquals(Constants.NUMBER_NOT_FOUND, exception.getMessage());
     }
 
     @Test
     public void testFindClosestEmptyStorageNegative() {
         Exception exception = assertThrows(IllegalStateException.class, () -> numberStorage.findClosest(10));
-
         assertEquals(Constants.NUMBER_STORAGE_IS_EMPTY, exception.getMessage());
     }
 }

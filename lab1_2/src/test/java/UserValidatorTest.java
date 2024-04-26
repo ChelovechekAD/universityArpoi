@@ -14,14 +14,17 @@ class UserValidatorTest {
     @ParameterizedTest
     @MethodSource("listOfInvalidLogins")
     public void testRegInvalidLogin(String invalidLogin) {
-        assertThrows(WrongLoginException.class, () -> UserRegistration.validateLogin(invalidLogin));
+        Exception exception = assertThrows(WrongLoginException.class, () -> UserRegistration.validateLogin(invalidLogin));
+        assertEquals(Constants.LOGIN_IS_INCORRECT_MESSAGE, exception.getMessage());
+
     }
 
 
     @ParameterizedTest
     @MethodSource("listOfInvalidPasswords")
     public void testRegInvalidPassword(String password, String passwordConf) {
-        assertThrows(WrongPasswordException.class, () -> UserRegistration.validatePassword(password, passwordConf));
+        Exception exception = assertThrows(WrongPasswordException.class, () -> UserRegistration.validatePassword(password, passwordConf));
+        assertEquals(Constants.PASSWORD_IS_INCORRECT_MESSAGE, exception.getMessage());
     }
 
 

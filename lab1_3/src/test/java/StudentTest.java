@@ -35,7 +35,10 @@ public class StudentTest {
 
     @Test
     public void testCompareToPositive() {
-        assertTrue(students.get(0).compareTo(students.get(1)) < 0);
+        Student student1 = students.get(0);
+        Student student2 = students.get(1);
+        boolean compResult = student1.compareTo(student2) < 0;
+        assertTrue(compResult);
     }
 
     @Test
@@ -46,6 +49,14 @@ public class StudentTest {
         String expectedOutput = "Students of 4 course:\n";
         assertEquals(expectedOutput, outputStream.toString());
     }
+    @Test
+    public void testPrintStudentExist() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        Student.printStudents(students, 1);
+        String expectedOutput = "Students of 1 course:\nAnton";
+        assertEquals(expectedOutput, outputStream.toString());
+    }
 
     @Test
     public void testUnionPositive() {
@@ -54,8 +65,7 @@ public class StudentTest {
         LinkedList<Student> set2 = new LinkedList<>();
         set2.add(students.get(1));
         LinkedList<Student> result = Student.union(set1, set2);
-        assertTrue(result.containsAll(set1));
-        assertTrue(result.containsAll(set2));
+        assertAll(()-> assertTrue(result.containsAll(set1)), ()-> assertTrue(result.containsAll(set2)));
     }
 
     @Test
